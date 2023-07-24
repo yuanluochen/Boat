@@ -19,7 +19,7 @@ void lora_decode(uint8_t* recv,
 				uint8_t* TurnRight, 
 				uint8_t* sw)
 {
-	//二进制转置	
+	//二进制转�?	
 	*w = 		(*recv >> KeyBoard_w) & 0x01;
 	*a = 		(*recv >> KeyBoard_a) & 0x01;
 	*s = 		(*recv >> KeyBoard_s) & 0x01;
@@ -27,4 +27,4 @@ void lora_decode(uint8_t* recv,
 	*TurnLeft = (*recv >> KeyBoard_TurnLeft) & 0x01;
 	*TurnRight = (*recv >> KeyBoard_TurnRight) & 0x01;
 	*sw = (*recv >> KeyBoard_sw) & 0x01;
-}
+

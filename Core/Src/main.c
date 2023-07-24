@@ -78,8 +78,8 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
+
   /* USER CODE BEGIN Init */
-  int SwitchFlag = 0;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -106,8 +106,8 @@ int main(void)
   //舵机自动回正,电调停转
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, ESC_MID);
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, ESC_MID);
-  servo_init();
-	HAL_Delay(2000);
+    servo_init();
+    HAL_Delay(2000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -118,11 +118,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 #if TEST
-  //  //两者正向
+  //  //两�?�正�?
   //  servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
   //  servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
 
-  //  //控制电机转速,正向
+  //  //控制电机转�??,正向
   //  __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, 1200);
   //  __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, 1200);
 		
@@ -142,24 +142,24 @@ int main(void)
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转速,正向
+      //控制电机转�??,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
     }
-    else if(boat_ctrl.motion == motion_back)//后退
+    else if(boat_ctrl.motion == motion_back)//后�??
     {
-      //两者正向
+      //两�?�正�?
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
       //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转速，反向
+      //控制电机转�?�，反向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_BACK);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_FRONT);
     }
-    else if(boat_ctrl.motion == motion_left)//左平移
+    else if(boat_ctrl.motion == motion_left)//左平�?
     {
       //前后舵机左转
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_LEFT);
@@ -168,11 +168,11 @@ int main(void)
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转速,正向
+      //控制电机转�??,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
     }
-    else if (boat_ctrl.motion == motion_right) //右平移
+    else if (boat_ctrl.motion == motion_right) //右平�?
     {
       //前后舵机右转
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_RIGHT);
@@ -181,54 +181,54 @@ int main(void)
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转速,正向
+      //控制电机转�??,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
 
     }
     else if(boat_ctrl.motion == motion_TurnLeft)//平移
     {
-      //前舵机左，后舵机右
+      //前舵机左，后舵机�?
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_RIGHT);
       //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_LEFT);
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转速,正向
+      //控制电机转�??,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
 
     }
     else if(boat_ctrl.motion == motion_TurnRight)//右转
     {
-      //前舵机右，后舵机左
+      //前舵机右，后舵机�?
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_LEFT);
       //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_RIGHT);
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转速,正向
+      //控制电机转�??,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
     }
     else
     {
-      //两者正向
+      //两�?�正�?
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
       //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转速停止
+      //控制电机转�?�停�?
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_STOP);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_STOP);
     }
 
 
-    //继电器控制
+    //继电器控�?
     if(boat_ctrl.idleControl.idle == IdleOpen)//继电器开
     {
       HAL_GPIO_WritePin(SWITCH_GPIO_Port, SWITCH_Pin, GPIO_PIN_SET);
@@ -325,6 +325,6 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  // /* USER CODE END 6 */
+  /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
