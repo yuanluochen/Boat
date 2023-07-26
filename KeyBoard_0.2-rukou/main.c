@@ -16,12 +16,12 @@ int main()
 {
     //串口初始化
     SerialInit();
-    
     while(1)
     {
         
         //任务
         Task();
+        Sleep(17);
     }
     return 0;
 }

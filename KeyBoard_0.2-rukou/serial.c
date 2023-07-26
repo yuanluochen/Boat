@@ -80,7 +80,7 @@ static HANDLE OpenSerial(serial_t* SerialInit, //串口名称，如COM1，COM2
  
 void SerialInit()
 {
-    char SerialCOM[10];
+    char SerialCOM[10] = { 0 };
     Serial.SerialStatus = 0;
     while(Serial.SerialStatus == 0)
     {

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "keyboard.h": "c",
+        "windows.h": "c"
+    }
+}
