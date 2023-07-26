@@ -43,7 +43,7 @@ void KeyBoardTask(void)
         input = 0;
     }
 
-    printf("%d\t", input);
+    // printf("%d\t", input);
     JudgeKeyBoardInput(input);
 
     // 判断键盘输入是否符合输入要求
@@ -94,12 +94,12 @@ static void JudgeKeyBoardInput(int input)
     case 'X':
     case 'x':
         KeyBoardControl.KeyBoardInput = IdleOpen;
-        printf("Alarm Close\n");
+        printf("Alarm open\n");
         break;
     case 'C':
     case 'c':
         KeyBoardControl.KeyBoardInput = IdleClose;
-        printf("Alarm Open\n");
+        printf("Alarm close\n");
         break;
         // 其他
     default:

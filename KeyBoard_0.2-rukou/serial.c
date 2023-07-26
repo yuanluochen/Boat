@@ -112,14 +112,14 @@ void SerialTxTask(void)
     Serial.SerialTx[0] = TxHead;
     Serial.SerialTx[1] = TxData;
 
-    //输出串口发送数据
-    if(memcmp(last, Serial.SerialTx, sizeof(uint8_t) * 3) != 0)
-    {
-        char s[10];
-        itoa(Serial.SerialTx[1], s, 2);//二进制输出转换
-        printf("0x%x %s 0X%x\n", Serial.SerialTx[0], s, Serial.SerialTx[3]);
-        memcpy(last, Serial.SerialTx, sizeof(uint8_t) * 3);
-    }
+    // //输出串口发送数据
+    // if(memcmp(last, Serial.SerialTx, sizeof(uint8_t) * 3) != 0)
+    // {
+    //     char s[10];
+    //     itoa(Serial.SerialTx[1], s, 2);//二进制输出转换
+    //     printf("0x%x %s 0X%x\n", Serial.SerialTx[0], s, Serial.SerialTx[3]);
+    //     memcpy(last, Serial.SerialTx, sizeof(uint8_t) * 3);
+    // }
     //数据发送
     WINBOOL judge =  WriteFile(Serial.SerialHandle, 
             (LPCVOID)Serial.SerialTx, 
