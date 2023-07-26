@@ -8,7 +8,7 @@
 #define ESC_MAX 2000
 #define ESC_MID 1500
 
-#define LORA_RX_BUFF_LEN 64
+#define LORA_RX_BUFF_LEN 2
 
 #define ESC1_CHANNEL TIM_CHANNEL_1
 #define ESC2_CHANNEL TIM_CHANNEL_2
@@ -81,8 +81,8 @@ typedef enum _Dir_t {
 //警报判断
 typedef enum
 {
-	IdleClose = 0,
-	IdleOpen = 1,
+	Idle_Close = 0,
+	Idle_Open = 1,
 }idle_t;
 
 //警报

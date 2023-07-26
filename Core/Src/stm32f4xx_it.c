@@ -270,11 +270,11 @@ void USART1_IRQHandler(void)
         // 警报判断
         if (IdleOpen == 1 && IdleClose == 0)
         {
-            boat_ctrl.idleControl.idle = IdleOpen; // �?
+            boat_ctrl.idleControl.idle = Idle_Open; // �?
         }
         else
         {
-            boat_ctrl.idleControl.idle = IdleClose; // �?
+            boat_ctrl.idleControl.idle = Idle_Close; // �?
         }
     }
     //  }

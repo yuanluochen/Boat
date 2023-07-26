@@ -27,4 +27,4 @@ void lora_decode(uint8_t* recv,
 	*TurnLeft = (*recv >> KeyBoard_TurnLeft) & 0x01;
 	*TurnRight = (*recv >> KeyBoard_TurnRight) & 0x01;
 	*sw = (*recv >> KeyBoard_sw) & 0x01;
-
+}

@@ -118,11 +118,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 #if TEST
-  //  //两�?�正�?
+  //  //两者正向
   //  servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
   //  servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
 
-  //  //控制电机转�??,正向
+  //  //控制电机转速,正向
   //  __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, 1200);
   //  __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, 1200);
 		
@@ -135,44 +135,47 @@ int main(void)
 
     if(boat_ctrl.motion == motion_front)//前进
     {
-      
-      servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
-      //HAL_Delay(SERVO_DELAY);
-      servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
 
-      //HAL_Delay(MOTOR_DELAY);
+        // 控制电机转速,正向
+        __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
+        __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
 
-      //控制电机转�??,正向
-      __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
-      __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
+        servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
+        // HAL_Delay(SERVO_DELAY);
+        servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
+
+        // HAL_Delay(MOTOR_DELAY);
+
+        // // 控制电机转速,正向
+        // __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
+        // __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
     }
-    else if(boat_ctrl.motion == motion_back)//后�??
+    else if(boat_ctrl.motion == motion_back)//后退
     {
-      //两�?�正�?
+      //两者正向
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
-      //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
 
-      //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转�?�，反向
+      //控制电机转速，反向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_BACK);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_FRONT);
     }
-    else if(boat_ctrl.motion == motion_left)//左平�?
+    else if(boat_ctrl.motion == motion_left)//左平移
     {
-      //前后舵机左转
-      servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_LEFT);
-      //HAL_Delay(SERVO_DELAY);      
-      servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_LEFT);
-
-      //HAL_Delay(MOTOR_DELAY);
-
-      //控制电机转�??,正向
+      // 控制电机转速,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
+      //前后舵机左转
+      servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_LEFT);
+      servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_LEFT);
+
+
+    //   //控制电机转速,正向
+    //   __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
+    //   __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
     }
-    else if (boat_ctrl.motion == motion_right) //右平�?
+    else if (boat_ctrl.motion == motion_right) //右平移
     {
       //前后舵机右转
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_RIGHT);
@@ -181,59 +184,59 @@ int main(void)
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转�??,正向
+      //控制电机转速,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
 
     }
     else if(boat_ctrl.motion == motion_TurnLeft)//平移
     {
-      //前舵机左，后舵机�?
+      //前舵机左，后舵机右
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_RIGHT);
       //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_LEFT);
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转�??,正向
+      //控制电机转速,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
 
     }
     else if(boat_ctrl.motion == motion_TurnRight)//右转
     {
-      //前舵机右，后舵机�?
+      //前舵机右，后舵机左
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_LEFT);
       //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_RIGHT);
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转�??,正向
+      //控制电机转速,正向
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_FRONT);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_BACK);
     }
     else
     {
-      //两�?�正�?
+      //两者正向
       servo_ctrl(&SERVO_TIM, SERVO_BACK_CHANNEL, SERVO_BACK_ANGLE_FRONT);
       //HAL_Delay(SERVO_DELAY);
       servo_ctrl(&SERVO_TIM, SERVO_FRONT_CHANNEL, SERVO_FRONT_ANGLE_FRONT);
 
       //HAL_Delay(MOTOR_DELAY);
 
-      //控制电机转�?�停�?
+      //控制电机转速停止
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_FRONT_CHANNEL, MOTOR_STOP);
       __HAL_TIM_SET_COMPARE(&MOTOR_TIM, MOTOR_BACK_CHANNEL, MOTOR_STOP);
     }
 
 
-    //继电器控�?
-    if(boat_ctrl.idleControl.idle == IdleOpen)//继电器开
+    //继电器控制
+    if(boat_ctrl.idleControl.idle == Idle_Open)//继电器开
     {
       HAL_GPIO_WritePin(SWITCH_GPIO_Port, SWITCH_Pin, GPIO_PIN_SET);
     }
-    else if(boat_ctrl.idleControl.idle == IdleClose)
+    else if(boat_ctrl.idleControl.idle == Idle_Close)
     {
       HAL_GPIO_WritePin(SWITCH_GPIO_Port, SWITCH_Pin, GPIO_PIN_RESET);
     }
@@ -241,7 +244,7 @@ int main(void)
     {
       HAL_GPIO_WritePin(SWITCH_GPIO_Port, SWITCH_Pin, GPIO_PIN_RESET);
     }
-    HAL_Delay(5);
+    HAL_Delay(1);
 #endif
   }
   /* USER CODE END 3 */
