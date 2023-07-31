@@ -43,7 +43,6 @@ void KeyBoardTask(void)
         input = 0;
     }
 
-    // printf("%d\t", input);
     JudgeKeyBoardInput(input);
 
     // 判断键盘输入是否符合输入要求

@@ -27,9 +27,9 @@
  * 
  */
 //前舵机角度中值
-#define SERVO_ANGLE_FRONT_MID 130
+#define SERVO_ANGLE_FRONT_MID 120
 //后舵机角度中值
-#define SERVO_ANGLE_BACK_MID 148
+#define SERVO_ANGLE_BACK_MID 150
 //前舵机正向
 #define SERVO_FRONT_ANGLE_FRONT SERVO_ANGLE_FRONT_MID
 //前舵机左

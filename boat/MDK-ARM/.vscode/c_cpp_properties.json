@@ -434,7 +434,8 @@
                 "__clang_wide_literal_encoding__=\"UTF-32\"",
                 "__llvm__=1"
             ],
-            "intelliSenseMode": "${default}"
+            "intelliSenseMode": "${default}",
+            "configurationProvider": "cmsis-csolution"
         }
     ],
     "version": 4
