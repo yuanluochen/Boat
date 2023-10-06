@@ -1,0 +1,9 @@
+build-idx:
+  generated-by: csolution version 2.0.0
+  csolution: boat.csolution.yaml
+  cprojects:
+    - cproject: boat.cproject.yaml
+  cbuilds:
+    - cbuild: boat+boat.cbuild.yml
+      project: boat
+      configuration: +boat

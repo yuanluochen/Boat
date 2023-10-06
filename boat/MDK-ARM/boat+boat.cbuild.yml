@@ -1,0 +1,165 @@
+build:
+  generated-by: csolution version 2.0.0
+  solution: boat.csolution.yaml
+  project: boat.cproject.yaml
+  context: boat+boat
+  compiler: AC6
+  device: STM32F407ZETx
+  processor:
+    fpu: on
+    endian: little
+    trustzone: non-secure
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0
+    - pack: Keil::STM32F4xx_DFP@2.17.1
+      path: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1
+  optimize: none
+  debug: on
+  misc:
+    ASM:
+      - -masm=auto
+    C:
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -std=c99
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    CPP:
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -std=c99
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    Link:
+      - --map
+      - --load_addr_map_info
+      - --xref
+      - --callgraph
+      - --symbols
+      - --info sizes
+      - --info totals
+      - --info unused
+      - --info veneers
+      - --list
+      - --strict
+      - --summary_stderr
+      - --info summarysizes
+  define:
+    - USE_HAL_DRIVER
+    - STM32F407xx
+    - STM32F407xx
+    - _RTE_
+  add-path:
+    - ../Core/Inc
+    - ../Drivers/STM32F4xx_HAL_Driver/Inc
+    - ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+    - ../Drivers/CMSIS/Device/ST/STM32F4xx/Include
+    - ../Drivers/CMSIS/Include
+    - RTE/_boat
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  output-dirs:
+    intdir: tmp/boat/boat
+    outdir: out/boat/boat
+    rtedir: RTE
+  output:
+    - type: elf
+      file: boat.axf
+  components:
+    - component: ARM::CMSIS:CORE@5.6.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS:CORE
+  linker:
+    script: boat_boat.sct
+  groups:
+    - group: Application/MDK-ARM
+      files:
+        - file: startup_stm32f407xx.s
+          category: sourceAsm
+    - group: Application/User/Core
+      files:
+        - file: ../Core/Src/bsp.c
+          category: sourceC
+        - file: ../Core/Src/main.c
+          category: sourceC
+        - file: ../Core/Src/gpio.c
+          category: sourceC
+        - file: ../Core/Src/dma.c
+          category: sourceC
+        - file: ../Core/Src/tim.c
+          category: sourceC
+        - file: ../Core/Src/usart.c
+          category: sourceC
+        - file: ../Core/Src/stm32f4xx_it.c
+          category: sourceC
+        - file: ../Core/Src/stm32f4xx_hal_msp.c
+          category: sourceC
+    - group: Drivers/STM32F4xx_HAL_Driver
+      files:
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c
+          category: sourceC
+        - file: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
+          category: sourceC
+    - group: Drivers/CMSIS
+      files:
+        - file: ../Core/Src/system_stm32f4xx.c
+          category: sourceC
+  constructed-files:
+    - file: RTE/_boat/RTE_Components.h
+      category: header
